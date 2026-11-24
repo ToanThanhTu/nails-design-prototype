@@ -44,16 +44,16 @@
 .btn:hover { background: #5f3843; }
 .btn:focus-visible, .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-.arches { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: clamp(12px, 2vw, 28px); padding: 32px 0 112px; }
+.arches { display: flex; flex-wrap: nowrap; justify-content: center; align-items: flex-end; gap: clamp(12px, 2vw, 28px); padding: 32px 0 112px; }
 .arch {
-  flex: 1 1 220px; max-width: 320px; margin: 0; aspect-ratio: 3 / 4.4; border-radius: 999px 999px 0 0;
+  flex: 1 1 0; min-width: 0; max-width: 320px; margin: 0; aspect-ratio: 3 / 4.4; border-radius: 999px 999px 0 0;
   display: flex; align-items: flex-end; justify-content: center; padding-bottom: 20px; color: var(--ink);
 }
 .arch figcaption { font-family: var(--serif); font-style: italic; font-size: 18px; }
-.archTall { flex-basis: 260px; max-width: 380px; aspect-ratio: 3 / 4.6; }
+.archTall { flex-grow: 1.2; max-width: 380px; aspect-ratio: 3 / 4.6; }
 
 .about { padding: 112px 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: clamp(40px, 7vw, 112px); align-items: center; }
-.portrait { flex: 1 1 320px; max-width: 460px; aspect-ratio: 4 / 5.4; padding-bottom: 24px; color: var(--soft); }
+.portrait { flex: 1 1 320px; min-width: 0; max-width: 460px; aspect-ratio: 4 / 5.4; padding-bottom: 24px; color: var(--soft); }
 .aboutText { flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
 .h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.5vw, 64px); line-height: 1.02; }
 .body { margin: 0; font-size: 18px; line-height: 1.75; font-weight: 300; color: var(--soft); max-width: 600px; }
@@ -113,3 +113,48 @@
   font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
 }
 .footerLogo { font-family: var(--serif); font-style: italic; font-size: 26px; letter-spacing: 0; text-transform: none; color: var(--ink); }
+
+.arch figcaption { text-align: center; padding: 0 8px; }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .about, .gallery { padding: 88px 0; }
+  .arch figcaption { font-size: 15px; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .header { flex-direction: column; justify-content: center; gap: 4px; padding: 18px 0 10px; }
+  .logo { order: -1; }
+  .reserve { display: none; }
+  .nav { gap: 24px; justify-content: center; }
+  .hero { padding: 40px 0 32px; gap: 20px; }
+  .lead { font-size: 16px; }
+  .btn { padding: 0 28px; }
+  .arches { gap: 8px; padding: 16px 0 64px; }
+  .arch { padding-bottom: 10px; }
+  .arch figcaption { font-size: 12px; line-height: 1.2; }
+  .about { padding: 64px 0; gap: 36px; }
+  .portrait { max-width: 280px; margin: 0 auto; }
+  .body { font-size: 16px; }
+  .menuName { font-size: 21px; }
+  .gallery { padding: 64px 0; }
+  .galleryHead { margin-bottom: 36px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px; }
+  .work { gap: 10px; }
+  .workTitle { font-size: 17px; line-height: 1.2; }
+  .workTag { font-size: 10px; letter-spacing: 0.12em; }
+  .contactInner { padding-top: 72px; }
+  .form { margin-top: 16px; gap: 22px; }
+  .info { margin-top: 40px; }
+  .info dd { font-size: 19px; }
+  .footer { justify-content: center; text-align: center; }
+}
+
+/* ---------- Tablet only ---------- */
+@media (min-width: 601px) and (max-width: 900px) {
+  .portrait { max-width: 360px; margin: 0 auto; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px 16px; }
+  .workTitle { font-size: 18px; line-height: 1.2; }
+  .workTag { font-size: 11px; letter-spacing: 0.12em; }
+}

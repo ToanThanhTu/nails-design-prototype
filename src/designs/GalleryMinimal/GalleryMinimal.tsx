@@ -57,13 +57,13 @@ export default function GalleryMinimal() {
         </section>
 
         <div className={s.heroImages}>
-          <figure className={s.tile} style={{ background: '#1A1A1A', color: '#fff', height: 460 }}>
+          <figure className={`${s.tile} ${s.heroTile}`} style={{ background: '#1A1A1A', color: '#fff' }}>
             <figcaption className={s.caption}>Photo: black chrome almond</figcaption>
           </figure>
-          <figure className={s.tile} style={{ background: '#C8102E', color: '#fff', height: 460 }}>
+          <figure className={`${s.tile} ${s.heroTile}`} style={{ background: '#C8102E', color: '#fff' }}>
             <figcaption className={s.caption}>Photo: classic cherry, short square</figcaption>
           </figure>
-          <figure className={s.tile} style={{ background: '#E8E2DC', color: '#3A3A3A', height: 460 }}>
+          <figure className={`${s.tile} ${s.heroTile}`} style={{ background: '#E8E2DC', color: '#3A3A3A' }}>
             <figcaption className={s.caption}>Photo: milky nude BIAB</figcaption>
           </figure>
         </div>

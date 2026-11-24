@@ -157,7 +157,7 @@ export default function CandyPop() {
                 style={{
                   background: tiles[item.id],
                   transform: `rotate(${tilts[i % tilts.length]})`,
-                  boxShadow: item.id === 'lineart' ? '6px 6px 0 #FF7AB6' : undefined,
+                  borderColor: item.id === 'lineart' ? '#FF7AB6' : undefined,
                 }}
               >
                 {item.image && <img src={item.image} alt={item.title} className={s.img} />}

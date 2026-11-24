@@ -142,3 +142,45 @@
 
 .footer { padding: 0 0 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-weight: 500; }
 .footerLogo { font-family: var(--display); font-weight: 800; font-size: 20px; }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .about { padding: 88px 0 48px; }
+  .gallery { padding: 72px 0; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .wrap { padding-top: 16px; }
+  .header { padding: 8px 8px 8px 16px; border-radius: 26px; }
+  .logo { font-size: 21px; }
+  .nav a { padding: 0 12px; }
+  .hero { padding: 40px 0 40px; gap: 32px; }
+  .heroMain { gap: 22px; }
+  .lead { font-size: 18px; }
+  .btnPrimary, .btnSecondary { min-height: 52px; padding: 0 22px; font-size: 16px; }
+  .illustration { max-width: 300px; }
+  .sticker { width: 92px; height: 92px; font-size: 14px; right: 2%; }
+  .marquee { padding: 12px 0; }
+  .marqueeTrack { font-size: 21px; }
+  .about { padding: 64px 0 32px; }
+  .portrait { max-width: 300px; margin: 0 auto; }
+  .body { font-size: 17px; }
+  .menu { padding: 24px 0 64px; }
+  .gallery { padding: 56px 0; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; }
+  .tile { border-radius: 20px; padding: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .tile .pill { font-size: 11px; padding: 4px 8px; }
+  .contactWrap { padding: 24px 0 64px; }
+  .contact { border-radius: 28px; box-shadow: 6px 6px 0 var(--ink); }
+  .linkPill { max-width: 100%; overflow-wrap: anywhere; }
+  .form .btnPrimary { width: 100%; justify-content: center; }
+}
+
+/* ---------- Tablet only ---------- */
+@media (min-width: 601px) and (max-width: 900px) {
+  .portrait { max-width: 380px; margin: 0 auto; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 16px; }
+  .tile { border-radius: 22px; padding: 10px; }
+  .tile .pill { font-size: 12px; padding: 4px 10px; }
+}

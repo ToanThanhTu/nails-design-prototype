@@ -123,3 +123,48 @@
   border-top: 1px solid #3a3a3a; display: flex; flex-wrap: wrap; justify-content: space-between;
   gap: 16px; font-size: 14px; color: #b5b5b5;
 }
+
+.heroTile { height: 460px; }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .heroTile { height: 380px; }
+  .about, .gallery { padding: 72px 0; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .header { padding: 16px 0; }
+  .header .btnDark { display: none; }
+  .nav { gap: 20px; }
+  .hero { padding: 40px 0 32px; gap: 28px; }
+  .h1 { margin-top: 14px; }
+  .lead { font-size: 17px; }
+  /* Hero photos become a swipeable row instead of three tall stacked blocks */
+  .heroImages {
+    display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin: 0 -16px; padding: 0 16px; scroll-padding: 0 16px; scrollbar-width: none;
+  }
+  .heroImages::-webkit-scrollbar { display: none; }
+  .heroTile { flex: 0 0 80%; height: 340px; scroll-snap-align: start; }
+  .points { padding: 40px 0 56px; gap: 24px; }
+  .about, .gallery { padding: 56px 0; }
+  .portrait { aspect-ratio: 4 / 3; }
+  .body { font-size: 17px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .square { padding: 10px; }
+  .square .caption { font-size: 11px; letter-spacing: 0.04em; }
+  .chip { padding: 0 14px; }
+  .contactInner { padding-top: 64px; }
+  .formFoot .btnAccent { width: 100%; justify-content: center; }
+}
+
+/* ---------- Tablet only ---------- */
+@media (min-width: 601px) and (max-width: 900px) {
+  .heroImages, .points { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .points { gap: 24px; }
+  .heroTile { height: 300px; }
+  .portrait { aspect-ratio: 16 / 10; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .square .caption { font-size: 11px; letter-spacing: 0.04em; }
+}
