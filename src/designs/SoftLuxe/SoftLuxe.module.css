@@ -324,3 +324,22 @@
   .treatmentText { align-items: flex-start; gap: 6px; }
   .map { aspect-ratio: 16 / 9; }
 }
+
+/* ============ Scroll to top (footer) ============ */
+.footerBottom { align-items: center; }
+.toTop {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0; background: none; border: 0;
+  color: var(--on-deep); font: inherit; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
+}
+.toTopIcon {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  border: 1px solid #6b5650; border-radius: 999px 999px 0 0; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.toTop:hover .toTopIcon { background: var(--on-deep); border-color: var(--on-deep); color: var(--deep); }
+.toTop:hover svg { transform: translateY(-2px); }
+.toTopIcon svg { transition: transform 0.2s ease; }
+.page .toTop:focus-visible { outline-color: var(--on-deep); }
+@media (max-width: 600px) {
+  .footerBottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .toTop { margin-top: 8px; }
+}

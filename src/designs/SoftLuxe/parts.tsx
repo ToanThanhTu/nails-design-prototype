@@ -118,6 +118,11 @@ function Header({ current }: { current: LuxePage }) {
   )
 }
 
+function scrollToTop() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+}
+
 function Footer() {
   return (
     <footer className={s.footer}>
@@ -156,6 +161,14 @@ function Footer() {
         <div className={s.footerBottom}>
           <span>© 2026 Lumi Nail Atelier</span>
           <span>Made with care in {studio.city}</span>
+          <button type="button" className={s.toTop} onClick={scrollToTop}>
+            Scroll to top
+            <span className={s.toTopIcon} aria-hidden="true">
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" strokeWidth="1.2">
+                <path d="M6 13V1M1 6l5-5 5 5" />
+              </svg>
+            </span>
+          </button>
         </div>
       </div>
     </footer>
