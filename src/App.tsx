@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import GalleryMinimal from './designs/GalleryMinimal/GalleryMinimal'
 import CandyPop from './designs/CandyPop/CandyPop'
 import SoftLuxe from './designs/SoftLuxe/SoftLuxe'
+import { navigate, useLinkInterception, useUrl } from './navigation'
 import './App.css'
 
 const designs = [
@@ -12,32 +13,31 @@ const designs = [
 
 type DesignId = (typeof designs)[number]['id']
 
-function readDesignFromUrl(): DesignId {
-  const param = new URLSearchParams(window.location.search).get('design')
+function readDesignFromUrl(search: string): DesignId {
+  const param = new URLSearchParams(search).get('design')
   return designs.some((d) => d.id === param) ? (param as DesignId) : 'minimal'
 }
 
 export default function App() {
-  const [active, setActive] = useState<DesignId>(readDesignFromUrl)
-  const previous = useRef(active)
+  // The URL is the single source of truth: ?design=luxe&page=about
+  const { search } = useUrl()
+  useLinkInterception()
+  const active = readDesignFromUrl(search)
 
-  // Keep the choice in the URL (?design=candy) so a specific design can be shared.
+  // Make sure the URL always names the design, so any view can be shared.
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('design') === active) return
     try {
       const url = new URL(window.location.href)
       url.searchParams.set('design', active)
-      // Switching designs starts on that design's home page (Soft Luxe has sub-pages)
-      if (previous.current !== active) {
-        url.searchParams.delete('page')
-        url.hash = ''
-      }
       window.history.replaceState(null, '', url)
     } catch {
-      // Some embedded previews block history changes; switching still works.
+      // Some embedded previews block history changes; the app still works.
     }
-    if (previous.current !== active) window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-    previous.current = active
   }, [active])
+
+  // Switching designs opens that design's home page, at the top.
+  const selectDesign = (id: DesignId) => navigate(`?design=${id}`)
 
   const current = designs.find((d) => d.id === active)!
   const Design = current.Component
@@ -57,7 +57,7 @@ export default function App() {
                 name="design"
                 value={d.id}
                 checked={active === d.id}
-                onChange={() => setActive(d.id)}
+                onChange={() => selectDesign(d.id)}
               />
               <span className="switcher__pill">
                 <span className="switcher__swatch" style={{ background: d.swatch }} aria-hidden="true" />

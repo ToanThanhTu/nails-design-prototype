@@ -1,3 +1,4 @@
+import { useUrl } from '../../navigation'
 import type { LuxePage } from './content'
 import { Layout } from './parts'
 import Home from './pages/Home'
@@ -8,14 +9,15 @@ import Contact from './pages/Contact'
 
 const pages: Record<LuxePage, () => JSX.Element> = { home: Home, about: About, services: Services, gallery: Gallery, contact: Contact }
 
-function readPage(): LuxePage {
-  const p = new URLSearchParams(window.location.search).get('page')
+function readPage(search: string): LuxePage {
+  const p = new URLSearchParams(search).get('page')
   return p && p in pages ? (p as LuxePage) : 'home'
 }
 
 /** Soft Luxe: a full multi-page site. Pages are chosen with ?design=luxe&page=about etc. */
 export default function SoftLuxe() {
-  const current = readPage()
+  const { search } = useUrl()
+  const current = readPage(search)
   const Page = pages[current]
   return (
     <Layout current={current}>
