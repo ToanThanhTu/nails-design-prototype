@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import GalleryMinimal from './designs/GalleryMinimal/GalleryMinimal'
 import CandyPop from './designs/CandyPop/CandyPop'
 import SoftLuxe from './designs/SoftLuxe/SoftLuxe'
@@ -19,18 +19,24 @@ function readDesignFromUrl(): DesignId {
 
 export default function App() {
   const [active, setActive] = useState<DesignId>(readDesignFromUrl)
+  const previous = useRef(active)
 
   // Keep the choice in the URL (?design=candy) so a specific design can be shared.
   useEffect(() => {
     try {
       const url = new URL(window.location.href)
       url.searchParams.set('design', active)
-      url.hash = ''
+      // Switching designs starts on that design's home page (Soft Luxe has sub-pages)
+      if (previous.current !== active) {
+        url.searchParams.delete('page')
+        url.hash = ''
+      }
       window.history.replaceState(null, '', url)
     } catch {
       // Some embedded previews block history changes; switching still works.
     }
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    if (previous.current !== active) window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    previous.current = active
   }, [active])
 
   const current = designs.find((d) => d.id === active)!
